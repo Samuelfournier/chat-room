@@ -6,17 +6,17 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
-// var http = require('http').Server(app);
-// var io = require('socket.io')(http);
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-// const http = require('http');
-// const server = http.createServer(app);
-// const { Server } = require("socket.io");
-// const io = new Server(server);
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
-// const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000
 
-// app.use(express.static(__dirname));
+app.use(express.static(__dirname));
 
 // var mysql = require('mysql')
 // var connection = mysql.createConnection({
@@ -63,9 +63,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 //     console.log('Connected!');
 //   });
 
-// server.listen(port, () => {
-//     console.log('server is running on port', server.address().port);
-// });
+server.listen(port, () => {
+    console.log('server is running on port', server.address().port);
+});
    
 
 // connection.end()
