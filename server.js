@@ -14,6 +14,8 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+const port = process.env.PORT || 3000
+
 app.use(express.static(__dirname));
 
 var mysql = require('mysql')
@@ -61,7 +63,7 @@ connection.connect((err) => {
     console.log('Connected!');
   });
 
-server.listen(3000, () => {
+server.listen(port, () => {
     console.log('server is running on port', server.address().port);
 });
    
