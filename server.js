@@ -14,12 +14,7 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-
 app.use(express.static(__dirname));
-
-
-
-
 
 var mysql = require('mysql')
 var connection = mysql.createConnection({
@@ -28,8 +23,6 @@ var connection = mysql.createConnection({
   password: '',
   database: 'chat-room'
 })
-
-
 
 
 app.get('/messages', (req, res) => {
@@ -45,8 +38,8 @@ app.get('/messages', (req, res) => {
 app.post('/messages', (req, res) => {
     // var message = new Message(req.body);
 
-    console.log(req.body.message);
-    let sql = `INSERT INTO MESSAGE(member_id,content,name) VALUES(1,"${req.body.message}", "${req.body.name}")`
+    console.log(req.body);
+    let sql = `INSERT INTO MESSAGE(member_id,content,name) VALUES(1,"${req.body.content}", "${req.body.name}")`
 
 
     connection.query(sql, function (err, rows, fields) {
@@ -67,7 +60,6 @@ connection.connect((err) => {
     if (err) throw err;
     console.log('Connected!');
   });
-
 
 server.listen(3000, () => {
     console.log('server is running on port', server.address().port);
